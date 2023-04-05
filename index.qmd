@@ -67,7 +67,7 @@ author: Zachariah McDonough
 
 1. Test 4:
 
-    a. Our 4th test was intended to test if paths can be augmented for students requesting to be dropped off at the same location when requesting 2nd pickup after 1st has been assigned. Two of our students experienced an error with the app where the screen turned white when enter:ng the drop off location so we weren’t able to obtain conclusive results.
+    a. Our 4th test was intended to test if paths can be augmented for students requesting to be dropped off at the same location when requesting 2nd pickup after 1st has been assigned. Two of our students experienced an error with the app where the screen turned white when entering the drop off location so we weren’t able to obtain conclusive results.
 
     a. Pictures:
         <div style="display:flex">
