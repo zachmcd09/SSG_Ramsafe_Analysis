@@ -2,6 +2,7 @@
 title: "Ramsafe Research Report"
 date: "2023-04-05"
 format: html
+author: Zachariah McDonough
 ---
 
 ## Executive Summary
