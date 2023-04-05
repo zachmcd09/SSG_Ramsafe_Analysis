@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-04-05">
+
+<title>Ramsafe Research Report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Ramsafe_Research_Report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Ramsafe_Research_Report_files/libs/quarto-html/quarto.js"></script>
+<script src="Ramsafe_Research_Report_files/libs/quarto-html/popper.min.js"></script>
+<script src="Ramsafe_Research_Report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Ramsafe_Research_Report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Ramsafe_Research_Report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Ramsafe_Research_Report_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Ramsafe_Research_Report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Ramsafe_Research_Report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Ramsafe_Research_Report_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ramsafe Research Report</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 5, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="executive-summary" class="level2">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
+<ol type="1">
+<li>This research report presents the findings of a simulation study conducted for VCU’s Ramsafe network, which functions similarly to Uber, allowing students to request pickups and drop-offs within VCU campus &amp; Richmond midtown area. The study aims to improve the efficiency of the bus system, and analyze the routing decisions to find the optimal routine. The proposed algorithm prioritizes pickups while minimizing the total trip time for all passengers.</li>
+</ol>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<ol type="1">
+<li>The university’s existing bus network faces challenges in terms of less optimal routes for picking up and dropping of creating unutilized bus capacity increasing individual wait times. This study’s objective is to develop an algorithm that addresses these issues while maintaining a balance between the system’s efficiency and carrying capacity.</li>
+</ol>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<ol type="1">
+<li>Our team of 5 SSG member working on the Ramsafe project created 4 real-world scenarios to test the efficiency of busing routes. We sampled from pick up &amp; drop off locations that were popular among VCU students, as well as locations that were frequented less often</li>
+</ol>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<ol type="1">
+<li><p>Test 1:</p>
+<ol type="a">
+<li>We simulated 4 students along broad street that had all requested to be dropped off at the local Kroger on Laburnum. This is a popular destination for students, and many w/o cars utilize Ramsafe to transit to and from there to buy groceries. We Found that two busses were assigned for this task. One bus was assigned to the two students east of Belvedere St, and another was assigned to students on Broad St and further west. All of these students were on the west bound side, however the furthest Eastward bus was already assigned a prior pickup on 8 1/2 Canal. It’s likely this student was also requesting to go to Kroger, however it still would have been more efficient to go down Broad St and pickup the first student, then 8 1/2 Canal, and back to Broad St to pickup the remaining students before dropping them off at Kroger. Wait time were between 11-13 minutes.</li>
+</ol></li>
+<li><p>Solution:</p>
+<ol type="a">
+<li><p>It would be more efficient to designate one bus for students traveling to the same location given their pick up locations are within a few blocks of the bus route to the destination and by giving students the option to walk a few blocks to get picked up faster.</p></li>
+<li><p>Pictures:</p>
+<div style="display:flex">
+<img src="test1/IMG_1117.PNG" style="width:25%;margin-right:10px;"> <img src="test1/IMG_2795.JPG" style="width:25%;margin-left:10px;"> <img src="test1/IMG_2796.JPG" style="width:25%;margin-right:10px;"> <img src="test1/IMG_6007.PNG" style="width:25%;margin-left:10px;">
+</div></li>
+</ol></li>
+<li><p>Test 2:</p>
+<ol type="a">
+<li>We simulated 4 students wanting to get dropped off within a 2 block radius of each other. These students were also requesting pickup within a 3 block radius of each other. Each student requested pickup on a different corner of Monroe park, and to be dropped off a block apart eastward on Leigh St starting behind Kroger. This test showed us that all 3 available buses were assigned for this task. Wait times were between 14-23 minutes.</li>
+</ol></li>
+<li><p>Solution:</p>
+<ol type="a">
+<li><p>It would be more efficient to designate one bus for students requesting clustered pickups &amp; clustered drop offs within a given radius of each other(e.g.&nbsp;4 blocks)</p></li>
+<li><p>Pictures:</p>
+<div style="display:flex">
+<img src="test2/IMG_2797.JPG" style="width:25%;margin-right:10px;"> <img src="test2/IMG_2798.JPG" style="width:25%;margin-left:10px;"> <img src="test2/IMG_2799.JPG" style="width:25%;margin-right:10px;"> <img src="test2/IMG_2801.JPG" style="width:25%;margin-left:10px;">
+</div></li>
+</ol></li>
+<li><p>Test 3:</p>
+<ol type="a">
+<li>We simulated 2 students requesting to be picked up from the library and dropped off on Main &amp; Jefferson. After their ride was confirmed, we requested another 2 students to be picked up in front of GRC and dropped off on Cary &amp; Belvedere. The request of the second pair of students was a sub route of the first pair, however all 3 buses were assigned for this task.</li>
+</ol></li>
+<li><p>Solution:</p>
+<ol type="a">
+<li><p>It would be more efficient to allow bus routes to augment so that students who are picked up 2nd can be dropped off 1st, given the augmented route ride time doesn’t exceed 15 minutes for the first pair.</p></li>
+<li><p>Pictures:</p>
+<div style="display:flex">
+<img src="test3/IMG_2803.JPG" style="width:25%;margin-right:10px;"> <img src="test3/IMG_2804.JPG" style="width:25%;margin-left:10px;"> <img src="test3/IMG_2805.JPG" style="width:25%;margin-right:10px;"> <img src="test3/IMG_2806.JPG" style="width:25%;margin-left:10px;">
+</div></li>
+</ol></li>
+<li><p>Test 4:</p>
+<ol type="a">
+<li><p>Our 4th test was intended to test if paths can be augmented for students requesting to be dropped off at the same location when requesting 2nd pickup after 1st has been assigned. Two of our students experienced an error with the app where the screen turned white when enter:ng the drop off location so we weren’t able to obtain conclusive results.</p></li>
+<li><p>Pictures:</p>
+<div style="display:flex">
+<img src="test4/IMG_0534.jpg" style="width:25%;margin-right:10px;"> <img src="test4/IMG_0535.jpg" style="width:25%;margin-left:10px;"> <img src="test4/IMG_6013.JPEG" style="width:25%;margin-right:10px;"> <img src="test4/IMG_0538.JPG" style="width:25%;margin-right:10px;">
+</div></li>
+</ol></li>
+</ol>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<ol type="1">
+<li>Our findings indicate that the proposed solutions would significantly improve the efficiency of the VCU Ramsafe network. By calculating the quotient of % increase in total trip time[max 15 minutes] / % increase in carrying capacity[min2] and optimizing routing decisions, the algorithm can prioritize pickups and drop-offs while minimizing the total trip time for all passengers given no passenger’s ride time exceeds 15 minutes.</li>
+</ol>
+</section>
+<section id="recommendations" class="level2">
+<h2 class="anchored" data-anchor-id="recommendations">Recommendations</h2>
+<ol type="1">
+<li>Based on the simulation results, we recommend the university implement the proposed algorithm to optimize the VCU Ramsafe network’s routing decisions. This will result in a more efficient system that prioritizes pickups and minimizes total trip time for all passengers.</li>
+</ol>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<ol type="1">
+<li>The proposed algorithm using the quotient calculation, successfully addresses the challenges faced by the VCU Ramsafe bus network. By implementing this algorithm, the university can create a more efficient and responsive transportation system for its students.</li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

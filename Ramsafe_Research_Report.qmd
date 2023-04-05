@@ -72,7 +72,8 @@ format: html
         <div style="display:flex">
         <img src="test4/IMG_0534.jpg" style="width:25%;margin-right:10px;">
         <img src="test4/IMG_0535.jpg" style="width:25%;margin-left:10px;">
-        <img src="test4/IMG_0536.jpg" style="width:25%;margin-right:10px;">
+        <img src="test4/IMG_6013.JPEG" style="width:25%;margin-right:10px;">
+        <img src="test4/IMG_0538.JPG" style="width:25%;margin-right:10px;">
         </div>
 
 ## Discussion
