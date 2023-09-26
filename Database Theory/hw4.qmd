@@ -1,0 +1,540 @@
+---
+title: Study Guide for CMSC 508 Quiz 2
+date: 9/24/2023
+author: Zachariah McDonough
+format:
+    html:
+        theme: cyborg
+        toc: false
+        embed-resources: true
+---
+### Summary
+
+- This study guide reviews topics covered in CS 508 from week 4 to week 6 including but not limited to relational databases, relational algebra, and database design. After reviewing the material, readers will be equipped with both theoretical knowledge and practical skills to effectively interact with and manage relational databases.
+
+### References:
+
+1. <https://www.w3.org/TR/xml-entity-names/02A.html>
+1. <https://www.classe.cornell.edu/~dms79/LectureNotes/formulae/list-of-math-symbols-extended.htm>
+1. <https://www.rapidtables.com/code/text/unicode-characters.html>
+1. <https://www.w3schools.com/charsets/ref_utf_math.asp>
+1. <https://latex-tutorial.com/align-equations/>
+1. <https://quarto.org/docs/output-formats/html-themes.html>
+1. advanced layout: <https://quarto.org/docs/authoring/article-layout.html>
+1. <https://towardsdatascience.com/a-quick-guide-to-relational-algebra-operators-in-dbms-1ff2ddecaad7>
+1. <https://www.guru99.com/relational-algebra-dbms.html>
+1. <https://symbl.cc/en/unicode/blocks/miscellaneous-mathematical-symbols-a/#subblock-27D5>
+
+# Symbol helpers
+
+Selection: σ            Union: ∪                Natural Join: ⨝             Logical And: ∧ 
+Projection: π           Intersection: ∩         Left outer join: ⟕          Logical Or: ∨  
+Rename: ρ               Cross product: ⨯        Right outer join: ⟖         Logical Not: ¬
+                        Division: ÷             Full outer join: ⟗
+
+# Relations and relational algebra
+ 
+<table align="center">
+<tr><td padding="0px">
+### Relation R
+
+| A | B | C |
+|---|---|---|
+| 1 | 3 | 2 |
+| 2 | 2 | 1 |
+| 3 | 1 | 3 |
+| 4 | 4 | 4 |
+</td></tr></table>
+
+<table align="center" style="table-layout:fixed; width:100%">
+<tr style="border-bottom:1px solid black">
+<td style="vertical-align:top; text-align:center; width:12%">
+**Operator**
+</td>
+<td style="vertical-align:top; text-align:center; width:12%">
+**Latex style**
+</td>
+<td style="vertical-align:top; text-align:center; width:12%">
+**Unicode style**
+</td>
+<td style="vertical-align:top; text-align:center; width:28%">
+**Answer using sets above above**
+</td>
+<td style="vertical-align:top; text-align:left">
+**Description**
+</td>
+</tr>
+
+<tr>
+<td style="vertical-align:top; text-align:center; width:12%">
+Selection
+</td>
+<td style="vertical-align:top; text-align:center; width:12%">
+$\sigma_{B>2}R$
+</td>
+<td style="vertical-align:top; text-align:center; width:12%">
+&sigma; B>2 (R)
+</td>
+<td style="vertical-align:top; text-align:center; width:28%">
+{ [1,3,2],[4,4,4] }
+</td>
+<td style="vertical-align:top; text-align:left">
+The *selection* operation $\sigma$ is used to filter tuple from a relation.
+</td>
+</tr>
+
+<tr>
+<td style="vertical-align:top; text-align:center; width:12%">
+Projection
+</td>
+<td style="vertical-align:top; text-align:center; width:12%">
+$\pi_{A,C}R$
+</td>
+<td style="vertical-align:top; text-align:center; width:12%">
+&pi; A,C (R)
+</td>
+<td style="vertical-align:top; text-align:center; width:28%">
+{ [1,2],[2,1],[3,3],[4,4] }
+</td>
+<td style="vertical-align:top; text-align:left">
+The *selection* operation $\sigma$ is used to filter tuple from a relation.
+</td>
+</tr>
+
+</table>
+
+
+---
+
+## 1. Relational Algebra
+
+**Objective:** Relational algebra is the backbone of database query languages, providing a structured way to fetch and manipulate data.
+
+**Definition:** A set of operations on relations (tables) that produce new relations as results. It's a procedural query language that operates on one or more relations.
+
+**Key Points:**
+
+- Forms the theoretical basis of relational databases.
+
+- Provides a foundation for SQL and other query languages.
+
+- Operations can be combined to form complex queries.
+
+    - **Metaphor:** Relational algebra is like the grammar of databases. Just as grammar rules dictate sentence structure, relational algebra dictates how data can be queried and manipulated.
+
+    - **Example:** Filtering students in their final year.
+```sql
+σyear='final'(students)
+```
+
+---
+
+## 2. Relational Algebraic Operators and Operations:
+
+**Objective:** These operators are the building blocks of database queries, allowing for precise data retrieval and manipulation.
+
+**Definition:** A collection of operators that can be applied to relations, either to modify an existing relation or to combine multiple relations.
+
+**Key Points:**
+
+- Operators can be unary (affecting one relation) or binary (affecting two relations).
+
+- They form the basis for SQL operations.
+
+- The order and combination of operators can drastically change the result.
+
+**Relational Operators:**
+
+- **Selection σ:** Filters rows based on a condition.
+
+- **Projection π:** Selects specific columns.
+
+- **Rename ρ:** Renames the relation or its attributes.
+
+    - **Metaphor:** Think of these as the basic tools in a toolkit. Just as you'd use a filter to sift out unwanted particles, the `Selection σ` operator sifts out unwanted rows.
+
+    - **Example:** To get the names of all final year students: `πname(σyear='final'(students))`.
+
+**Set Operators:**
+
+- **Union ∪:** Combines two tables.
+
+- **Intersection ∩:** Retrieves common rows.
+
+- **Difference -:** Removes rows from one table that exist in another.
+
+    - **Metaphor:** These operators are like mathematical set operations. Imagine two circles in a Venn diagram; the overlapping part is the `Intersection ∩`.
+
+    - **Example:** To get students who are both in the drama club and the debate club: `drama_students ∩ debate_students`.
+
+**Logical Operators:**
+
+- **And ∧:** Combines two conditions.
+
+- **Or ∨:** Satisfies at least one of two conditions.
+
+- **Not ¬:** Negates a condition.
+
+    - **Metaphor:** These are the traffic lights of database operations. They dictate the flow and direction of data retrieval.
+
+    - **Example:** To get students who are in their final year and have honors: `σyear='final' ∧ honors='yes'(students)`.
+
+**Joins and Products:**
+
+- **Natural join ⋈:** Combines tables based on common columns.
+
+- **Theta join ⋈θ:** Joins tables based on a specific condition.
+
+- **Outer joins:** Includes unmatched rows from one or both tables.
+
+- **Cartesian product ⨯:** Combines all rows from two tables.
+
+- **Division ÷:** Divides one table by another.
+
+    - **Metaphor:** Joins are like puzzle pieces. When two pieces fit perfectly, they form a clear picture, just as joining two tables gives meaningful data.
+
+    - **Example:** To pair students with their chosen courses: `students ⋈ student_courses`.
+
+---
+
+## 3. SQL
+
+**Objective:** SQL is the bridge between theoretical relational algebra and practical database management, allowing users to interact with stored data.
+
+**Definition:** SQL (Structured Query Language) is a domain-specific language used in managing and querying data held in a relational database management system (RDBMS).
+
+**Key Points:**
+
+- SQL is both a DDL (Data Definition Language) and a DML (Data Manipulation Language).
+
+- It's standardized, with variations in different RDBMS.
+
+- SQL queries can range from simple data fetches to complex data manipulations.
+
+    - **Metaphor:** If relational algebra is the raw ingredients of a dish, SQL is the recipe that combines them into a delicious meal.
+
+    - **Example:** Fetching names of final year students.
+```sql
+SELECT name FROM students WHERE year = 'final';
+```
+
+---
+
+## 4. Relational Model - Entities and Attributes
+
+**Objective:** Entities and attributes form the basic structure of relational databases, representing real-world objects and their characteristics.
+
+**Definition:** Entities are tables that represent real-world objects, and attributes are the properties or characteristics of these entities.
+
+- **Entities:** Tables in a database that represent real-world objects.
+
+- **Attributes:** The properties or characteristics of these entities.
+
+**Key Points:**
+
+- Entities can represent tangible objects (like "books") or concepts (like "transactions").
+
+- Attributes give details about the entity, like its properties or characteristics.
+
+- Every entity will have a unique identifier, known as a primary key.
+
+    - **Metaphor:** Entities are like individual folders in a filing cabinet, and attributes are the labels on each folder.
+
+    - **Example:** A `students` entity might have attributes like `student_id`, `name`, and `year`.
+
+---
+
+## 5. Relation Notation
+
+**Objective:** Relation notation provides a concise way to represent the structure of tables and their relationships, aiding in database design and understanding.
+
+**Definition:** A shorthand representation of tables/entities and their attributes, often used in database design and documentation.
+
+**Key Points:**
+
+- Relations are denoted by their name followed by attributes in parentheses.
+
+- Modifiers can be added to attributes to denote keys or constraints.
+
+- Provides a quick overview of the table's structure.
+
+    - **Metaphor:** Relation notation is like a shorthand or a "nickname" for tables, making it easier to reference them in discussions or documentation.
+
+    - **Example:** Representing a student table with a primary key of `id`.
+```notation
+student( id [PK], name, year )
+```
+
+---
+
+## 6. Relational Model - Keys
+
+**Objective:** Keys are the pillars of relational databases, ensuring data integrity and enabling relationships between tables.
+
+**Definition:** Special attributes that help establish relationships between tables and ensure data integrity.
+
+**Key Points:**
+
+- Primary Keys uniquely identify each record in a table.
+
+- Foreign Keys establish relationships between tables.
+
+- Keys ensure data consistency and integrity.
+
+    - **Metaphor:** Keys are like the DNA of a table. Just as DNA uniquely identifies an individual, keys uniquely identify records and their relationships.
+
+    - **Example:** In a `student_courses` table, `student_id` and `course_id` can be foreign keys referencing `students` and `courses` tables respectively.
+```{mermaid}
+erDiagram
+    STUDENTS ||--o{ ENROLLMENT : Enrolls_In
+    COURSES ||--o{ ENROLLMENT : Offers
+    STUDENTS {
+        string student_id [PK]
+        string name
+        string year
+    }
+    COURSES {
+        string course_id [PK]
+        string course_name
+    }
+    ENROLLMENT {
+        string student_id [FK]
+        string course_id [FK]
+    }
+
+```
+---
+
+## 7. Relational Model - Relationships
+
+**Objective:** Relationships weave tables together, allowing for interconnected data storage and efficient querying.
+
+**Definition:** Connections between tables in a relational database, usually established using primary and foreign keys.
+
+**Key Points:**
+
+- Relationships can be one-to-one, one-to-many, or many-to-many.
+
+- They enable efficient data storage and querying.
+
+- Relationships ensure data consistency across tables.
+
+    - **Metaphor:** Relationships are like bridges between islands (tables). They allow you to travel (query) from one island to another, accessing related data.
+
+    - **Example:** In the `writes` table, `author_id` and `book_id` are foreign keys referencing the `authors` and `books` tables, respectively. This table captures the relationship between authors and the books they've written.
+
+```{mermaid}
+erDiagram
+    AUTHORS ||--o{ WRITES : Writes
+    BOOKS ||--o{ WRITES : Is_Written_By
+    AUTHORS {
+        string author_id [PK]
+        string author_name
+    }
+    BOOKS {
+        string book_id [PK]
+        string title
+    }
+    WRITES {
+        string author_id [FK]
+        string book_id [FK]
+    }
+```
+---
+
+## 8. Relational Model - Integrity Constraints
+
+**Objective:** Integrity constraints are the guardians of data quality, ensuring that the data stored in the database is accurate and consistent.
+
+**Definition:** Rules and conditions applied to tables to ensure the validity and consistency of data.
+
+**Key Points:**
+
+- Constraints can be applied at the column level or table level.
+
+- They prevent accidental data corruption.
+
+- Common constraints include `NOT NULL`, `UNIQUE`, and `FOREIGN KEY`.
+
+    - **Metaphor:** Integrity constraints are like the quality checks in a production line, ensuring every product (data entry) meets the required standards.
+
+    - **Example:** A `NOT NULL` constraint ensures a field always has a value.
+
+---
+
+## 9. SQLLite vs MySQL
+
+**Objective:** SQLite and MySQL are two popular RDBMS with distinct features and use cases. Understanding their differences aids in choosing the right tool for the job.
+
+**Definition:** Both are RDBMS, but SQLite is a lightweight, serverless system ideal for local storage, while MySQL is a robust, client-server system suitable for large-scale applications.
+
+- **SQLite:** Lightweight, serverless, ideal for local storage.
+- **MySQL:** Open-source, client-server model, suitable for large-scale applications.
+
+**Key Points:**
+
+- SQLite is file-based and doesn't require a server.
+
+- MySQL supports a wider range of features and is more scalable.
+
+- Choice depends on the application's requirements.
+
+    - **Metaphor:** SQLite is like a diary you keep for personal notes, while MySQL is like a library catalog system used to manage thousands of books.
+
+    - **Example:** For a personal project or a small mobile app, SQLite might be preferred. For a large web application with millions of users, MySQL would be more appropriate.
+
+---
+
+## 10. Accessing the DBMS
+
+**Objective:** Accessing a DBMS is the first step in interacting with a database, and there are various methods to do so, each with its advantages.
+
+**Definition:** The methods and interfaces used to interact with a Database Management System.
+
+**Key Points:**
+
+- **Command Line:** Directly script and manage databases.
+
+- **APIs:** Use interfaces like ODBC, REST, or GraphQL.
+
+- **Web Interfaces:** Tools like PHPMyAdmin.
+
+    - **Metaphor:** Accessing a DBMS is like entering a house. Some use the main door (command line), some use a side door (APIs), some look through the windows (web interfaces).
+
+    - **Example:** To access a MySQL database, one might use the command line interface and enter commands like `SHOW DATABASES;`.
+
+---
+
+## 11. DML and DDL
+
+**Objective:** DML and DDL are the two main components of SQL, each serving a distinct purpose in database interaction.
+
+**Definition:** DML (Data Manipulation Language) deals with data manipulation (SELECT, INSERT, UPDATE, DELETE). DDL (Data Definition Language) deals with database structure (CREATE, ALTER, DROP).
+
+**Key Points:**
+
+- DML is about data: fetching, modifying, or deleting.
+
+- DDL is about structure: defining or modifying tables, indexes, or constraints.
+
+    - **Metaphor:** DML is like choosing and arranging furniture in a room, while DDL is like constructing or modifying the room itself.
+
+    - **Example:** Creating a table is a DDL operation: `CREATE TABLE students (id INT, name VARCHAR(50));`. Fetching data from it is a DML operation: `SELECT * FROM students;`.
+
+---
+
+## 12. ACID Properties
+
+**Objective:** ACID properties ensure that database transactions are reliable and consistent, even in the face of failures.
+
+**Definition:** ACID stands for Atomicity, Consistency, Isolation, and Durability - the essential properties that ensure reliable processing of transactions.
+
+**Key Points:**
+
+- **Atomicity:** Transactions are all-or-nothing.
+
+- **Consistency:** Transactions bring the database from one valid state to another.
+
+- **Isolation:** Concurrent transactions don't interfere.
+
+- **Durability:** Once committed, transactions remain so.
+
+    - **Metaphor:** ACID properties are like the safety checks on a roller coaster, ensuring a smooth and secure ride for all passengers.
+
+    - **Example:** If a bank transfer involves subtracting money from one account and adding it to another, both operations must succeed or fail together, ensuring atomicity.
+
+---
+
+## 13. Designing a Database
+
+**Objective:** Designing a database is a structured process that ensures data is stored efficiently and can be accessed and manipulated effectively.
+
+**Definition:** The process of defining the structure, relationships, constraints, and other aspects of a database to achieve specific goals.
+
+**Key Points:**
+
+- Starts with understanding the requirements.
+
+- Involves creating an ER diagram.
+
+- Normalization ensures efficient data storage.
+
+    - **Metaphor:** Designing a database is like architecting a house. You need a blueprint (ER diagram) and must ensure the foundation (tables and relationships) is strong.
+
+    - **Example:** In the `supplies` table, `supplier_id` and `product_id` are foreign keys referencing the `suppliers` and `products` tables, respectively. This table represents the relationship between `suppliers` and the `products` they supply.
+```{mermaid}
+erDiagram
+    SUPPLIERS ||--o{ SUPPLIES : Supplies
+    PRODUCTS ||--o{ SUPPLIES : Is_Supplied_By
+    SUPPLIERS {
+        string supplier_id [PK]
+        string supplier_name
+    }
+    PRODUCTS {
+        string product_id [PK]
+        string product_name
+        float price
+    }
+    SUPPLIES {
+        string supplier_id [FK]
+        string product_id [FK]
+    }
+```
+---
+
+## 14. Database Ecosystem
+
+**Objective:** The database ecosystem encompasses the broader environment in which databases operate, including tools, technologies, and practices.
+
+**Definition:** The set of tools, technologies, and practices that surround and interact with databases.
+
+**Key Points:**
+
+- Databases don't operate in isolation.
+
+- They interact with applications, users, and other systems.
+
+- The ecosystem includes backup tools, monitoring systems, and more.
+
+    - **Metaphor:** The database ecosystem is like a forest. While a database is a single tree, it's part of a larger interconnected environment.
+
+    - **Example:** In a company's IT infrastructure, the database might interact with web servers, user interfaces, backup systems, and monitoring tools, forming a complex ecosystem.
+
+---
+
+## 15. Detailed Relation Sets
+
+**Objective:** Detailed relation sets provide a deeper understanding of the structure and constraints of tables in a database.
+
+**Definition:** Detailed specifications of tables, including attributes, keys, and constraints.
+
+**Key Points:**
+
+- Relations are the core of the relational model.
+
+- They define how data is stored and accessed.
+
+- Detailed relation sets provide a blueprint of the table's structure.
+
+    - **Metaphor:** Detailed relation sets are like detailed recipes, specifying every ingredient, quantity, and step.
+
+    - **Example:** In the `drives` table, `driver_id` and `vehicle_id` are foreign keys referencing the `drivers` and `vehicles` tables, respectively. This table captures the relationship between `drivers` and the `vehicles` they drive.
+```{mermaid}
+erDiagram
+    DRIVERS ||--o{ DRIVES : Drives
+    VEHICLES ||--o{ DRIVES : Is_Driven_By
+    DRIVERS {
+        string driver_id [PK]
+        string driver_name
+        string license_number
+    }
+    VEHICLES {
+        string vehicle_id [PK]
+        string vehicle_type
+    }
+    DRIVES {
+        string driver_id [FK]
+        string vehicle_id [FK]
+    }
+```
+---
